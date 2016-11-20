@@ -28,7 +28,7 @@ function! s:to_raw_url(url)
   return substitute(url, 'blob\/', '', '')
 endfunction
 
-" create buffuers of vimrcs
+" create buffers of vimrcs
 function! s:load_vimrcs(vimrcs)
   for vimrc in a:vimrcs
     let raw_url = s:to_raw_url(vimrc['url'])
