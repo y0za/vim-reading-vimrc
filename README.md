@@ -1,5 +1,5 @@
 # vim-reading-vimrc
-file loading tool for reading-vimrc
+file loading tool for [vimrc読書会](http://vim-jp.org/reading-vimrc/)
 
 ## Usage
 ```
