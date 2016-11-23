@@ -1,4 +1,5 @@
 " file loading tool for reading-vimrc
+" Version: 0.0.1
 " Author:  y0za
 " License: MIT License
 

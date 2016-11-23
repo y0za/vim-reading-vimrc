@@ -1,0 +1,47 @@
+*reading_vimrc.txt*	file loading tool for reading-vimrc
+
+Version : 0.0.1
+Author  : y0za <yoza.is12s@gmail.com>
+License : MIT license
+
+==============================================================================
+CONTENTS					*reading_vimrc-contents*
+
+INTRODUCTION			|reading_vimrc-introduction|
+INTERFACE			|reading_vimrc-interface|
+  COMMANDS			  |reading_vimrc-commands|
+CHANGELOG			|reading_vimrc-changelog|
+
+
+==============================================================================
+INTRODUCTION					*reading_vimrc-introduction*
+
+*reading_vimrc* is file loading tool for reading-vimrc
+
+Requirements:
+- curl or wget
+
+Latest version:
+https://github.com/user/reading_vimrc.vim
+
+
+==============================================================================
+INTERFACE					*reading_vimrc-interface*
+
+------------------------------------------------------------------------------
+COMMANDS					*reading_vimrc-commands*
+
+:ReadingVimrcLoad				*:ReadingVimrcLoad*
+	Load vimrcs of next reading-vimrc as new buffer. For example, after
+	execution of this command, you could open vimrc file |:ls| and :e
+	#[buffer number].
+
+
+==============================================================================
+CHANGELOG					*reading_vimrc-changelog*
+
+0.1.0	2016-10-11
+	- Init.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
