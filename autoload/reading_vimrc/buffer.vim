@@ -20,3 +20,14 @@ function! reading_vimrc#buffer#name(info) abort
         \       a:info.branch,
         \       a:info.path)
 endfunction
+
+" register vimrc file as empty buffer
+function! reading_vimrc#buffer#register(url) abort
+  let file_info = reading_vimrc#url#parse_github_url(a:url)
+  if empty(file_info)
+    return
+  endif
+
+  let buffer_name = reading_vimrc#buffer#name(file_info)
+  execute 'badd' buffer_name
+endfunction
