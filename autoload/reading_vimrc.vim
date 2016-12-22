@@ -43,5 +43,14 @@ function! reading_vimrc#load()
   call s:load_vimrcs(vimrcs[0]['vimrcs'])
 endfunction
 
+" update clipboard for reading-vimrc bot in gitter.
+function! reading_vimrc#update_clipboard() range
+  let splited_name = split(expand('%'), '/')
+  let filename = splited_name[len(splited_name) - 1]
+  let label = printf('%s#L%s-%s', filename, a:firstline, a:lastline)
+  let @+ = label
+  echo 'Updated clipboard : ' . label
+endfunction
+
 let &cpo = s:save_cpo
 unlet s:save_cpo
