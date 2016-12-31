@@ -15,6 +15,10 @@ command! -nargs=0
       \ ReadingVimrcLoad
       \ call reading_vimrc#load()
 
+command! -nargs=0
+      \ ReadingVimrcList
+      \ call reading_vimrc#list()
+
 vnoremap <Plug>(reading_vimrc-update_clipboard) :call reading_vimrc#update_clipboard()<CR>
 
 let &cpo = s:save_cpo

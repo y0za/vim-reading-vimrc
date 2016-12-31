@@ -31,3 +31,14 @@ function! reading_vimrc#buffer#register(url) abort
   let buffer_name = reading_vimrc#buffer#name(file_info)
   execute 'badd' buffer_name
 endfunction
+
+" return vimrc buffer info list
+function! reading_vimrc#buffer#info_list() abort
+  let info_list = []
+  for info in getbufinfo()
+    if info.name =~# '^reading-vimrc://'
+      call add(info_list, info)
+    endif
+  endfor
+  return info_list
+endfunction

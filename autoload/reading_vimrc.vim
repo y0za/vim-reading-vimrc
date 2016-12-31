@@ -23,17 +23,12 @@ function! s:fetch_next_json()
   return s:next_json
 endfunction
 
-" convert to raw github url
-function! s:to_raw_url(url)
-  let url = substitute(a:url, 'github.com', 'raw.githubusercontent.com', '')
-  return substitute(url, 'blob\/', '', '')
-endfunction
-
 " create buffers of vimrcs
 function! s:load_vimrcs(vimrcs)
   for vimrc in a:vimrcs
-    let raw_url = s:to_raw_url(vimrc['url'])
-    execute 'badd ' . raw_url
+    let parsed_url = reading_vimrc#url#parse_github_url(vimrc['url'])
+    let buffer_name = reading_vimrc#buffer#name(parsed_url)
+    execute 'badd ' . buffer_name
   endfor
 endfunction
 
@@ -41,6 +36,14 @@ endfunction
 function! reading_vimrc#load()
   let vimrcs = s:fetch_next_json()
   call s:load_vimrcs(vimrcs[0]['vimrcs'])
+endfunction
+
+" show reading-vimrc buffer list
+function! reading_vimrc#list()
+  call reading_vimrc#load()
+  for info in reading_vimrc#buffer#info_list()
+    echo printf('%3d  %s', info.bufnr, info.name)
+  endfor
 endfunction
 
 " update clipboard for reading-vimrc bot in gitter.
