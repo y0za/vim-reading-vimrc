@@ -10,6 +10,7 @@ CONTENTS					*reading_vimrc-contents*
 INTRODUCTION			|reading_vimrc-introduction|
 INTERFACE			|reading_vimrc-interface|
   COMMANDS			  |reading_vimrc-commands|
+  KEY-MAPPINGS			  |reading_vimrc-key-mappings|
 CHANGELOG			|reading_vimrc-changelog|
 
 
@@ -36,11 +37,26 @@ COMMANDS					*reading_vimrc-commands*
 	execution of this command, you could open vimrc file |:ls| and :e
 	#[buffer number].
 
+:ReadingVimrcList				*:ReadingVimrcList*
+	Do *:ReadingVimrcLoad* and show created buffer names.
+
+
+------------------------------------------------------------------------------
+KEY-MAPPINGS					*reading_vimrc-key-mappings*
+
+<Plug>(reading_vimrc-update_clipboard)	*<Plug>(reading_vimrc-update_clipboard)*
+	available mode: visual select
+
 
 ==============================================================================
 CHANGELOG					*reading_vimrc-changelog*
 
-0.1.0	2016-10-11
+0.1.0	2016-12-31
+	- Add ReadingVimrcList command
+	- Implements to register label for reading_vimrc bot in gitter.
+          (contributed by MaxMEllon)
+
+0.0.1	2016-10-11
 	- Init.
 
 ==============================================================================
