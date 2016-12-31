@@ -14,7 +14,7 @@ endfunction
 
 " build raw github url from file info dictionary
 function! reading_vimrc#url#raw_github_url(info) abort
-  return printf('https://github.com/%s/%s/blob/%s/%s',
+  return printf('https://raw.githubusercontent.com/%s/%s/%s/%s',
         \       a:info.user,
         \       a:info.repo,
         \       a:info.branch,

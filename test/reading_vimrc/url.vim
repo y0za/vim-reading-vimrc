@@ -21,11 +21,11 @@ function! s:suite.raw_github_url() abort
   let test_cases = [
         \ {
         \   'info': {'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': '.vimrc'},
-        \   'expected': 'https://github.com/someone/dotfiles/blob/master/.vimrc'
+        \   'expected': 'https://raw.githubusercontent.com/someone/dotfiles/master/.vimrc'
         \ },
         \ {
         \   'info': {'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'},
-        \   'expected': 'https://github.com/someone/dotfiles/blob/master/vim/.vimrc'
+        \   'expected': 'https://raw.githubusercontent.com/someone/dotfiles/master/vim/.vimrc'
         \ },
         \ ]
   for tc in test_cases
