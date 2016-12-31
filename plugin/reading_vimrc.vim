@@ -21,5 +21,10 @@ command! -nargs=0
 
 vnoremap <Plug>(reading_vimrc-update_clipboard) :call reading_vimrc#update_clipboard()<CR>
 
+augroup reading_vimrc
+  autocmd!
+  autocmd BufEnter reading-vimrc://* call reading_vimrc#buffer#load_content()
+augroup END
+
 let &cpo = s:save_cpo
 unlet s:save_cpo

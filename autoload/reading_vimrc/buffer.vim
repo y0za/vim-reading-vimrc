@@ -1,3 +1,5 @@
+let s:V = vital#reading_vimrc#new()
+let s:HTTP = s:V.import('Web.HTTP')
 
 " parse buffer name to file info dictionary
 function! reading_vimrc#buffer#parse_name(name) abort
@@ -41,4 +43,17 @@ function! reading_vimrc#buffer#info_list() abort
     endif
   endfor
   return info_list
+endfunction
+
+" load vimrc buffer content from github
+function! reading_vimrc#buffer#load_content() abort
+  if line('$') > 1 || getline(1) != ''
+    return
+  endif
+
+  let parsed_name = reading_vimrc#buffer#parse_name(bufname('%'))
+  let raw_url = reading_vimrc#url#raw_github_url(parsed_name)
+  let response = s:HTTP.get(raw_url)
+  put =response.content
+  1 delete _
 endfunction
