@@ -38,7 +38,7 @@ COMMANDS					*reading_vimrc-commands*
 	#[buffer number].
 
 :ReadingVimrcList				*:ReadingVimrcList*
-	Do *:ReadingVimrcLoad* and show created buffer names.
+	Do |:ReadingVimrcLoad| and show created buffer names.
 
 
 ------------------------------------------------------------------------------
