@@ -54,6 +54,9 @@ function! reading_vimrc#buffer#load_content(path) abort
   let parsed_name = reading_vimrc#buffer#parse_name(a:path)
   let raw_url = reading_vimrc#url#raw_github_url(parsed_name)
   let response = s:HTTP.get(raw_url)
+  setlocal noreadonly modifiable
   put =response.content
   1 delete _
+  setlocal buftype=nofile bufhidden=hide noswapfile
+  setlocal readonly nomodifiable nomodeline number norelativenumber
 endfunction
