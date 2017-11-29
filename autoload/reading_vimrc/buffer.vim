@@ -59,4 +59,5 @@ function! reading_vimrc#buffer#load_content(path) abort
   1 delete _
   setlocal buftype=nofile bufhidden=hide noswapfile
   setlocal readonly nomodifiable nomodeline number norelativenumber
+  filetype detect
 endfunction
