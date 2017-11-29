@@ -23,7 +23,8 @@ vnoremap <Plug>(reading_vimrc-update_clipboard) :call reading_vimrc#update_clipb
 
 augroup reading_vimrc
   autocmd!
-  autocmd BufEnter reading-vimrc://* call reading_vimrc#buffer#load_content()
+  autocmd BufReadCmd reading-vimrc://*
+  \   call reading_vimrc#buffer#load_content(expand('<amatch>'))
 augroup END
 
 let &cpo = s:save_cpo

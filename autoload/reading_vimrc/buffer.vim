@@ -46,12 +46,12 @@ function! reading_vimrc#buffer#info_list() abort
 endfunction
 
 " load vimrc buffer content from github
-function! reading_vimrc#buffer#load_content() abort
+function! reading_vimrc#buffer#load_content(path) abort
   if line('$') > 1 || getline(1) != ''
     return
   endif
 
-  let parsed_name = reading_vimrc#buffer#parse_name(bufname('%'))
+  let parsed_name = reading_vimrc#buffer#parse_name(a:path)
   let raw_url = reading_vimrc#url#raw_github_url(parsed_name)
   let response = s:HTTP.get(raw_url)
   put =response.content
