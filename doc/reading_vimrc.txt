@@ -23,7 +23,7 @@ Requirements:
 - curl or wget
 
 Latest version:
-https://github.com/user/reading_vimrc.vim
+https://github.com/y0za/vim-reading-vimrc
 
 
 ==============================================================================
