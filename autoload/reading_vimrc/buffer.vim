@@ -3,16 +3,19 @@ let s:HTTP = s:V.import('Web.HTTP')
 
 " parse buffer name to file info dictionary
 function! reading_vimrc#buffer#parse_name(name) abort
-  let pattern = 'reading-vimrc://\([^/]\+\)/\([^/]\+\)/\([^/]\+\)/\([^/]\+\)/\(.\+\)$'
-  let results = matchlist(a:name, pattern)
-
-  return {
-        \  'nth': results[1],
-        \  'user': results[2],
-        \  'repo': results[3],
-        \  'branch': results[4],
-        \  'path': results[5]
-        \ }
+  let paths = split(matchstr(a:name, 'reading-vimrc://\zs.*'), '/')
+  let full_keys = ['nth', 'user', 'repo', 'branch', 'path']
+  let keys_num = len(full_keys)
+  let keys = full_keys[0 : min([keys_num, len(paths)]) - 1]
+  if len(keys) == keys_num
+    let path_part = join(paths[keys_num - 1 : -1], '/')
+    let paths = paths[0 : keys_num - 2] + [path_part]
+  endif
+  let info = {}
+  for i in range(len(keys))
+    let info[keys[i]] = paths[i]
+  endfor
+  return info
 endfunction
 
 " build buffer name from file info dictionary

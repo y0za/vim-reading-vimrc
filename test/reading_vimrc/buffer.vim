@@ -11,6 +11,14 @@ function! s:suite.parse_name() abort
         \   'name': 'reading-vimrc://next/someone/dotfiles/master/vim/.vimrc',
         \   'expected': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'}
         \ },
+        \ {
+        \   'name': 'reading-vimrc://next',
+        \   'expected': {'nth': 'next'}
+        \ },
+        \ {
+        \   'name': 'reading-vimrc://next/someone/dotfiles',
+        \   'expected': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles'}
+        \ },
         \ ]
   for tc in test_cases
     call s:assert.equals(reading_vimrc#buffer#parse_name(tc.name), tc.expected)
