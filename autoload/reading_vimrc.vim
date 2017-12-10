@@ -24,9 +24,10 @@ function! s:fetch_next_json()
 endfunction
 
 " create buffers of vimrcs
-function! s:load_vimrcs(vimrcs)
+function! s:load_vimrcs(vimrcs, nth)
   for vimrc in a:vimrcs
     let parsed_url = reading_vimrc#url#parse_github_url(vimrc['url'])
+    let parsed_url.nth = a:nth
     let buffer_name = reading_vimrc#buffer#name(parsed_url)
     execute 'badd ' . buffer_name
   endfor
@@ -35,7 +36,7 @@ endfunction
 " load reading-vimrc files
 function! reading_vimrc#load()
   let vimrcs = s:fetch_next_json()
-  call s:load_vimrcs(vimrcs[0]['vimrcs'])
+  call s:load_vimrcs(vimrcs[0]['vimrcs'], 'next')
 endfunction
 
 " show reading-vimrc buffer list
