@@ -35,6 +35,14 @@ function! s:suite.name() abort
         \   'info': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'},
         \   'expected': 'reading-vimrc://next/someone/dotfiles/master/vim/.vimrc'
         \ },
+        \ {
+        \   'info': {'nth': 'next'},
+        \   'expected': 'reading-vimrc://next'
+        \ },
+        \ {
+        \   'info': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles'},
+        \   'expected': 'reading-vimrc://next/someone/dotfiles'
+        \ },
         \ ]
   for tc in test_cases
     call s:assert.equals(reading_vimrc#buffer#name(tc.info), tc.expected)

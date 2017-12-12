@@ -20,12 +20,9 @@ endfunction
 
 " build buffer name from file info dictionary
 function! reading_vimrc#buffer#name(info) abort
-  return printf('reading-vimrc://%s/%s/%s/%s/%s',
-        \       a:info.nth,
-        \       a:info.user,
-        \       a:info.repo,
-        \       a:info.branch,
-        \       a:info.path)
+  let full_keys = ['nth', 'user', 'repo', 'branch', 'path']
+  let paths = map(full_keys, 'get(a:info, v:val, "")')
+  return 'reading-vimrc://' . join(filter(paths, 'v:val !=# ""'), '/')
 endfunction
 
 " return vimrc buffer info list
