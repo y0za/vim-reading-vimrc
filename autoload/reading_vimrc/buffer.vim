@@ -92,7 +92,7 @@ endfunction
 
 function! s:set_content(content) abort
   setlocal noreadonly modifiable
-  put =a:content
-  1 delete _
+  silent put =a:content
+  silent 1 delete _
   setlocal readonly nomodifiable
 endfunction
