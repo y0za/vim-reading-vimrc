@@ -47,6 +47,12 @@ function! reading_vimrc#list()
   endfor
 endfunction
 
+" open reading-vimrc://next
+function! reading_vimrc#next()
+  let bufname = reading_vimrc#buffer#name({'nth': 'next'})
+  execute 'new' fnameescape(bufname)
+endfunction
+
 " update clipboard for reading-vimrc bot in gitter.
 function! reading_vimrc#update_clipboard() range
   let splited_name = split(expand('%'), '/')
