@@ -46,12 +46,53 @@ function! reading_vimrc#buffer#load_content(path) abort
   endif
 
   let parsed_name = reading_vimrc#buffer#parse_name(a:path)
-  let raw_url = reading_vimrc#url#raw_github_url(parsed_name)
-  let response = s:HTTP.get(raw_url)
+  if has_key(parsed_name, 'path')
+    let raw_url = reading_vimrc#url#raw_github_url(parsed_name)
+    let response = s:HTTP.get(raw_url)
+    setlocal noreadonly modifiable
+    put =response.content
+    1 delete _
+    setlocal buftype=nofile bufhidden=hide noswapfile
+    setlocal readonly nomodifiable nomodeline number norelativenumber
+    filetype detect
+  else
+    call s:show_info_page(parsed_name.nth)
+  endif
+endfunction
+
+function! s:show_info_page(nth) abort
+  " TODO see nth
+  let info = deepcopy(reading_vimrc#fetch_next_json()[0])
+  let info.nth = a:nth
+  let b:reading_vimrc_info = info
+
+  let part = info.part ==# '' ? '' : ' (' . info.part . ')'
+  let header = [
+        \   '第 ' . info.id . '回 ' . info.date,
+        \   info.author.name . ' さん' . part,
+        \   '------',
+        \ ]
+  let content = header + map(copy(info.vimrcs), 'v:val.name')
+
   setlocal noreadonly modifiable
-  put =response.content
+  put =content
   1 delete _
   setlocal buftype=nofile bufhidden=hide noswapfile
-  setlocal readonly nomodifiable nomodeline number norelativenumber
-  filetype detect
+  setlocal readonly nomodifiable nomodeline nonumber norelativenumber
+
+  nnoremap <buffer> <silent> <Plug>(reading-vimrc-open-file)
+        \  :<C-u>call <SID>open_vimrc(line('.') - 4)<CR>
+  nmap <buffer> <nowait> <CR> <Plug>(reading-vimrc-open-file)
+endfunction
+
+function! s:open_vimrc(n) abort
+  let vimrcs = b:reading_vimrc_info.vimrcs
+  if a:n < 0 || len(vimrcs) <= a:n
+    return
+  endif
+  let vimrc = vimrcs[a:n]
+  let info = reading_vimrc#url#parse_github_url(vimrc.url)
+  let info.nth = b:reading_vimrc_info.nth
+  let bufname = reading_vimrc#buffer#name(info)
+  new `=bufname`
 endfunction

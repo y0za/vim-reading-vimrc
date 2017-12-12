@@ -12,7 +12,7 @@ let s:JSON = s:V.import('Web.JSON')
 let s:NEXT_JSON_URL = 'http://vim-jp.org/reading-vimrc/json/next.json'
 
 " fetch next.json from reading-vimrc website
-function! s:fetch_next_json()
+function! reading_vimrc#fetch_next_json()
   if exists('s:next_json')
     return s:next_json
   endif
@@ -35,7 +35,7 @@ endfunction
 
 " load reading-vimrc files
 function! reading_vimrc#load()
-  let vimrcs = s:fetch_next_json()
+  let vimrcs = reading_vimrc#fetch_next_json()
   call s:load_vimrcs(vimrcs[0]['vimrcs'], 'next')
 endfunction
 
