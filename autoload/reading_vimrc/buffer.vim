@@ -46,11 +46,9 @@ function! reading_vimrc#buffer#load_content(path) abort
   if has_key(parsed_name, 'path')
     let raw_url = reading_vimrc#url#raw_github_url(parsed_name)
     let response = s:HTTP.get(raw_url)
-    setlocal noreadonly modifiable
-    put =response.content
-    1 delete _
     setlocal buftype=nofile bufhidden=hide noswapfile
-    setlocal readonly nomodifiable nomodeline number norelativenumber
+    setlocal nomodeline number norelativenumber
+    call s:set_content(response.content)
     filetype detect
   else
     call s:show_info_page(parsed_name.nth)
@@ -71,11 +69,9 @@ function! s:show_info_page(nth) abort
         \ ]
   let content = header + map(copy(info.vimrcs), 'v:val.name')
 
-  setlocal noreadonly modifiable
-  put =content
-  1 delete _
   setlocal buftype=nofile bufhidden=hide noswapfile
-  setlocal readonly nomodifiable nomodeline nonumber norelativenumber
+  setlocal nomodeline nonumber norelativenumber
+  call s:set_content(content)
 
   nnoremap <buffer> <silent> <Plug>(reading-vimrc-open-file)
         \  :<C-u>call <SID>open_vimrc(line('.') - 4)<CR>
@@ -92,4 +88,11 @@ function! s:open_vimrc(n) abort
   let info.nth = b:reading_vimrc_info.nth
   let bufname = reading_vimrc#buffer#name(info)
   new `=bufname`
+endfunction
+
+function! s:set_content(content) abort
+  setlocal noreadonly modifiable
+  put =a:content
+  1 delete _
+  setlocal readonly nomodifiable
 endfunction
