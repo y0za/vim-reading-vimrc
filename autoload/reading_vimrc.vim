@@ -50,7 +50,11 @@ endfunction
 function! reading_vimrc#update_clipboard() range
   let splited_name = split(expand('%'), '/')
   let filename = splited_name[len(splited_name) - 1]
-  let label = printf('%s#L%s-%s', filename, a:firstline, a:lastline)
+  if a:firstline == a:lastline
+    let label = printf('%s#L%s', filename, a:firstline)
+  else
+    let label = printf('%s#L%s-%s', filename, a:firstline, a:lastline)
+  endif
   let @+ = label
   echo 'Updated clipboard : ' . label
 endfunction
