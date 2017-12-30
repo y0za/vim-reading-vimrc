@@ -61,11 +61,12 @@ function! s:show_info_page(nth) abort
   let info.nth = a:nth
   let b:reading_vimrc_info = info
 
+  let id = repeat(' ', 3 - len(info.id)) . info.id
   let part = info.part ==# '' ? '' : ' (' . info.part . ')'
   let header = [
-        \   '第 ' . info.id . '回 ' . info.date,
+        \   '第 ' . id . '回 ' . info.date,
         \   info.author.name . ' さん' . part,
-        \   '------',
+        \   '-------------------------',
         \ ]
   let content = header + map(copy(info.vimrcs), 'v:val.name')
 
