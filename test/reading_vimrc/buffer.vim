@@ -4,12 +4,20 @@ let s:assert = themis#helper('assert')
 function! s:suite.parse_name() abort
   let test_cases = [
         \ {
-        \   'name': 'reading-vimrc://someone/dotfiles/master/.vimrc',
-        \   'expected': {'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': '.vimrc'}
+        \   'name': 'reading-vimrc://next/someone/dotfiles/master/.vimrc',
+        \   'expected': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': '.vimrc'}
         \ },
         \ {
-        \   'name': 'reading-vimrc://someone/dotfiles/master/vim/.vimrc',
-        \   'expected': {'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'}
+        \   'name': 'reading-vimrc://next/someone/dotfiles/master/vim/.vimrc',
+        \   'expected': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'}
+        \ },
+        \ {
+        \   'name': 'reading-vimrc://next',
+        \   'expected': {'nth': 'next'}
+        \ },
+        \ {
+        \   'name': 'reading-vimrc://next/someone/dotfiles',
+        \   'expected': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles'}
         \ },
         \ ]
   for tc in test_cases
@@ -20,12 +28,20 @@ endfunction
 function! s:suite.name() abort
   let test_cases = [
         \ {
-        \   'info': {'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': '.vimrc'},
-        \   'expected': 'reading-vimrc://someone/dotfiles/master/.vimrc'
+        \   'info': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': '.vimrc'},
+        \   'expected': 'reading-vimrc://next/someone/dotfiles/master/.vimrc'
         \ },
         \ {
-        \   'info': {'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'},
-        \   'expected': 'reading-vimrc://someone/dotfiles/master/vim/.vimrc'
+        \   'info': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles', 'branch': 'master', 'path': 'vim/.vimrc'},
+        \   'expected': 'reading-vimrc://next/someone/dotfiles/master/vim/.vimrc'
+        \ },
+        \ {
+        \   'info': {'nth': 'next'},
+        \   'expected': 'reading-vimrc://next'
+        \ },
+        \ {
+        \   'info': {'nth': 'next', 'user': 'someone', 'repo': 'dotfiles'},
+        \   'expected': 'reading-vimrc://next/someone/dotfiles'
         \ },
         \ ]
   for tc in test_cases

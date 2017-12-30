@@ -19,6 +19,10 @@ command! -nargs=0
       \ ReadingVimrcList
       \ call reading_vimrc#list()
 
+command! -nargs=0
+      \ ReadingVimrcNext
+      \ call reading_vimrc#next()
+
 vnoremap <Plug>(reading_vimrc-update_clipboard) :call reading_vimrc#update_clipboard()<CR>
 
 augroup reading_vimrc
