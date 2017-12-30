@@ -2,10 +2,21 @@
 file loading tool for [vimrc読書会](http://vim-jp.org/reading-vimrc/)
 
 ## Usage
+
+### Commands
 ```vim
-" create vimrc buffers and show those names
+" show next reading-vimrc info
+:ReadingVimrcNext
+
+" create next reading-vimrc buffers and show those names
 :ReadingVimrcList
 
+" load next reading-vimrc as buffers
+:ReadingVimrcLoad
+```
+
+### Config
+```
 " register label to clipboard
 vmap <Leader><CR> <Plug>(reading_vimrc-update_clipboard)
 ```
