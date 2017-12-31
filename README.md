@@ -1,4 +1,7 @@
 # vim-reading-vimrc
+
+[![Build Status](https://travis-ci.org/y0za/vim-reading-vimrc.svg?branch=master)](https://travis-ci.org/y0za/vim-reading-vimrc)
+
 file loading tool for [vimrc読書会](http://vim-jp.org/reading-vimrc/)
 
 ## Usage
