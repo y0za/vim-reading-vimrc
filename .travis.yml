@@ -24,4 +24,4 @@ env:
 script:
   - export PATH=$HOME/vim-$VIM_VERSION/bin:$PATH
   - vim --version
-  - /tmp/vim-themis/bin/themis --reporter spec
+  - /tmp/vim-themis/bin/themis --reporter spec test/**
