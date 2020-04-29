@@ -3,7 +3,7 @@ let s:HTTP = s:V.import('Web.HTTP')
 
 " parse buffer name to file info dictionary
 function! reading_vimrc#buffer#parse_name(name) abort
-  let paths = split(matchstr(a:name, 'reading-vimrc://\zs.*'), '/')
+  let paths = split(matchstr(a:name, 'readingvimrc://\zs.*'), '/')
   let full_keys = ['nth', 'user', 'repo', 'branch', 'path']
   let keys_num = len(full_keys)
   let keys = full_keys[0 : min([keys_num, len(paths)]) - 1]
@@ -22,14 +22,14 @@ endfunction
 function! reading_vimrc#buffer#name(info) abort
   let full_keys = ['nth', 'user', 'repo', 'branch', 'path']
   let paths = map(full_keys, 'get(a:info, v:val, "")')
-  return 'reading-vimrc://' . join(filter(paths, 'v:val !=# ""'), '/')
+  return 'readingvimrc://' . join(filter(paths, 'v:val !=# ""'), '/')
 endfunction
 
 " return vimrc buffer info list
 function! reading_vimrc#buffer#info_list() abort
   let info_list = []
   for info in getbufinfo()
-    if info.name =~# '^reading-vimrc://'
+    if info.name =~# '^readingvimrc://'
       call add(info_list, info)
     endif
   endfor

@@ -47,7 +47,7 @@ function! reading_vimrc#list()
   endfor
 endfunction
 
-" open reading-vimrc://next
+" open readingvimrc://next
 function! reading_vimrc#next()
   let bufname = reading_vimrc#buffer#name({'nth': 'next'})
   execute 'new' fnameescape(bufname)
