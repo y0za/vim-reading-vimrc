@@ -27,7 +27,7 @@ vnoremap <Plug>(reading_vimrc-update_clipboard) :call reading_vimrc#update_clipb
 
 augroup reading_vimrc
   autocmd!
-  autocmd BufReadCmd reading-vimrc://*
+  autocmd BufReadCmd readingvimrc://*
   \   call reading_vimrc#buffer#load_content(expand('<amatch>'))
 augroup END
 

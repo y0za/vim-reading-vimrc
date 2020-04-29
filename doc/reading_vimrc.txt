@@ -41,7 +41,7 @@ COMMANDS					*reading_vimrc-commands*
 	Do |:ReadingVimrcLoad| and show created buffer names.
 
 :ReadingVimrcNext				*:ReadingVimrcNext*
-	Open "reading-vimrc://next".  It shows next reading-vimrc info.
+	Open "readingvimrc://next".  It shows next reading-vimrc info.
 	And you can open files with <CR> when cursor on a file.
 
 
