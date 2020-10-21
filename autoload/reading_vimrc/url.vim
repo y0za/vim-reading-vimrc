@@ -1,7 +1,7 @@
 
 " parse github blob url to file info dictionary
 function! reading_vimrc#url#parse_github_url(url) abort
-  let pattern = 'https://github\.com/\([^/]\+\)/\([^/]\+\)/blob/\([^/]\+\)/\(.\+\)$'
+  let pattern = 'https://github\.com/\([^/]\+\)/\([^/]\+\)/\%(blob\|tree\)/\([^/]\+\)/\(.\+\)$'
   let results = matchlist(a:url, pattern)
 
   return {
